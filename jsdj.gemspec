@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Jsdj::VERSION
   spec.authors       = ["seo"]
   spec.email         = ["seotownsend@icloud.com"]
-  spec.summary       = "A boring javascript application framework"
-  spec.description   = "Jsdj is a cross-platform application framework system that exports javascript files"
+  spec.summary       = "Remix your javascript"
+  spec.description   = "Jsdj lets you take javascript code, parse it for tokens, and then transform that back into javascript code. Useful for macroizing and DSLing"
   spec.homepage      = "https://github.com/sotownsend/jsdj"
   spec.license       = "MIT"
 
