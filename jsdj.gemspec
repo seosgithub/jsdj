@@ -25,5 +25,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "pry", "~> 0.10"
   spec.add_runtime_dependency "rake", "~> 10.3"
   spec.add_development_dependency "therubyracer", "~> 0.12"
-  spec.executables << 'jsdj'
 end
