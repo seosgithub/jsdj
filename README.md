@@ -7,7 +7,22 @@
 
 # What is this?
 
-A work in progress
+**Jsdj** was purpose built for [Flok](http://github.com/sotownsend/flok) to allow for macros within javascript code that look
+like traditional javascript code.
+
+# How to use it
+```ruby
+@dj = Jsdj.new do |dj|
+  #When ever the function puts(...) is written in javascript,
+  #It will be replaced by what ever is returned within this
+  #block. i.e. makes the function call an inlined macro
+  dj.replace_function_call "puts" do |params|
+    raise "must have one function argument" if params.length != 1
+    raise "argument must be a string literal" if params.length != 1
+  end
+end
+```
+ 
 
 # Supported platforms
  * iOS 8 (iPhone)
