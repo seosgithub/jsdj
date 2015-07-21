@@ -8,17 +8,10 @@ describe "Compile" do
       }
     }
 
-    dj = Jsdj.new do |dj|
-      #When ever the function puts(...) is written in javascript,
-      #It will be replaced by what ever is returned within this
-      #block. i.e. makes the function call an inlined macro
-      dj.function "puts" do |params|
-        raise "must have one function argument" if params.length != 1
-        raise "argument must be a string literal" if params[0].class != Jsdj::JSStringLiteral
-      end
+    djc = Jsdj.new do |dj|
     end
 
-    js_src2 = dj.compile(js_src)
+    js_src2 = djc.compile(js_src)
     expect(js_src2).to eq(js_src)
   end
 end

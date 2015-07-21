@@ -12,11 +12,11 @@ like traditional javascript code.
 
 # How to use it
 ```ruby
-dj = Jsdj.new do |dj|
+djc = Jsdj.new do |dj|
   #When ever the function puts(...) is written in javascript,
   #It will be replaced by what ever is returned within this
   #block. i.e. makes the function call an inlined macro
-  dj.function "puts" do |params|
+  dj.function :puts do |params|
     raise "must have one function argument" if params.length != 1
     raise "argument must be a string literal" if params[0].class != Jsdj::JSStringLiteral
   end
@@ -24,7 +24,7 @@ end
 
 #Given a js src string, jsdj will return a js src string
 #that contains modifications
-result = dj.compile(src)
+result = djc.compile(src)
 ```
 
 # Create a function macro
@@ -33,7 +33,7 @@ your specified macro. When you get arguments for a function in **Jsdj**, the arg
 E.g. `JSStringLiteral`
 
 ```ruby
-dj.function "puts" do |params|
+dj.function :puts do |params|
   raise "argument must be a string literal" if params[0].class != Jsdj::JSStringLiteral
 end
 ```
