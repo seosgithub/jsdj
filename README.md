@@ -12,17 +12,42 @@ like traditional javascript code.
 
 # How to use it
 ```ruby
-@dj = Jsdj.new do |dj|
+dj = Jsdj.new do |dj|
   #When ever the function puts(...) is written in javascript,
   #It will be replaced by what ever is returned within this
   #block. i.e. makes the function call an inlined macro
-  dj.replace_function_call "puts" do |params|
+  dj.function "puts" do |params|
     raise "must have one function argument" if params.length != 1
-    raise "argument must be a string literal" if params.length != 1
+    raise "argument must be a string literal" if params[0].class != Jsdj::JSStringLiteral
   end
 end
+
+#Given a js src string, jsdj will return a js src string
+#that contains modifications
+result = dj.compile(src)
 ```
- 
+
+# Create a function macro
+**Jsdj** can parse javascript and take any function calls of a certain name and replace them with 
+your specified macro. When you get arguments for a function in **Jsdj**, the arguments have a type.
+E.g. `JSStringLiteral`
+
+```ruby
+dj.function "puts" do |params|
+  raise "argument must be a string literal" if params[0].class != Jsdj::JSStringLiteral
+end
+```
+
+  * **Supported Types**
+    * `JSStringLiteral` - A javascript string literal in quotes (single or double), e.g. `foo("bar")`
+      * `value` contains the full string as a ruby string
+    * `JSNumber` - A number
+      * `value` contains the value as a number
+    * `JSOther` - Some other kind of expression, either mixed, hash, etc.
+  * **Unsupported Types**
+    * `anonymous functions` - Attempting to use an anonymous function will result in
+        undefined behavior. Anonymous functions can be contained within a hash.
+Expression
 
 # Supported platforms
  * iOS 8 (iPhone)
