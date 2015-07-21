@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jsdj (0.0.5)
+    jsdj (0.0.6)
       therubyracer (~> 0.12)
 
 GEM
